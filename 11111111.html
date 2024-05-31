@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Circle and Star Pattern</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            margin: 0;
+        }
+        .canvas {
+            display: grid;
+            grid-template-columns: repeat(10, 1fr);
+            grid-template-rows: repeat(10, 1fr);
+            width: 400px;
+            height: 400px;
+            gap: 0;
+            background-color: #fff;
+        }
+        .circle {
+            position: relative;
+            width: 40px;
+            height: 40px;
+            background-color: #3498db;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: auto;
+        }
+        .star {
+            width: 20px;
+            height: 20px;
+            fill: #f1c40f; /* Yellow color */
+        }
+    </style>
+</head>
+<body>
+    <div class="canvas" id="canvas"></div>
+
+    <script>
+        const canvas = document.getElementById('canvas');
+        const rows = 10;
+        const cols = 10;
+
+        for (let i = 0; i < rows; i++) {
+            const isEvenRow = i % 2 === 0;
+            console.log('isEvenRow :' + isEvenRow);
+            for (let j = 0; j < cols; j++) {
+                const circle = document.createElement('div');
+                circle.classList.add('circle');
+                
+                const star = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+                star.setAttribute('class', 'star');
+                star.setAttribute('viewBox', '0 0 24 24');
+                
+                const starPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                starPath.setAttribute('d', 'M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.26 5.82 22 7 14.14 2 9.27l6.91-1.01L12 2z');
+                
+                star.appendChild(starPath);
+                circle.appendChild(star);
+                canvas.appendChild(circle);
+            }
+        }
+    </script>
+</body>
+</html>
